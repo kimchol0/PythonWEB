@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>对15aa709的补充</title>
+</head>
+<body>
+<p>一、创建Django项目</p>
+<p>二、在终端中创建应用 python manage.py startapp 应用名</p>
+<p>三、在项目包中的settings.py文件中添加应用
+INSTALLED_APPS = [<br>
+    'django.contrib.admin',<br>
+    'django.contrib.auth',<br>
+    'django.contrib.contenttypes',<br>
+    'django.contrib.sessions',<br>
+    'django.contrib.messages',<br>
+    'django.contrib.staticfiles',<br>
+    'stu'
+]</p>
+<p>四、确定访问路径 http://127.0.0.1:8000/student/</p>
+<p>五、配置项目跟路由<br>
+from django.conf.urls.import url,include<br>
+from django.contrib import admin<br>
+from django.urls import path<br>
+from PythonWEB import views<br>
+urlpatterns = [<br>
+    url(r'^student/', include('stu.urls'))<br>
+]</p>
+<p>六、在应用包下创建并配置urls.py文件<br>
+from django.conf.urls import url<br>
+from . import views<br>
+urlpatterns = [<br>
+    url(r'^$', views.login_view)<br>
+]</p>
+<p>七、在应用包下views.py文件中创建处理函数<br>
+from django.shortcuts import render<br>
+def login_view(request):<br>
+    return render(request, 'login.html')</p>
+<p>八、在templates目录下创建login.html文件<br>
+<xmp>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="get">
+        <p>
+            <label>用户名：</label><input type="text" name="uname"/>
+        </p>
+        <p>
+            <label>密&emsp;码：</label><input type="password" name="pwd"/>
+        </p>
+        <p>
+            <label>&emsp;&emsp;&emsp;&emsp;</label><input type="submit" value="登录"/>
+        </p>
+
+    </form>
+</body>
+</html>
+    </xmp>
+</p>
+</body>
+</html>
