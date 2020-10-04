@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="" method="get">
+    <form action="/student/login/" method="get">
+        <!-- /student/表示根路径
+              student/表示相对路径
+              在此处使用相对路径，会导致每次请求加载页面的路径出现重复的student-->
         <p>
             <label>用户名：</label><input type="text" name="uname"/>
         </p>
