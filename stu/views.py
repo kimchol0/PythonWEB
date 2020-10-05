@@ -4,13 +4,26 @@ from django.http import HttpResponse
 
 # Create your views here.
 # 渲染登录页面
+from stu.models import Student
+
+
 def index_view(request):
     # 获取当前请求方式（GET或POST）
     m = request.method
     if m == 'GET':
         return render(request, 'register.html')
     else:
-        return HttpResponse('处理注册功能')
+        # 获取请求参数
+        uname = request.POST.get('uname', '')
+        pwd = request.POST.get('pwd', '')
+        # 判断
+        if uname and pwd:
+            # 创建模型对象
+            stu = Student(sname=uname,spwd=pwd)
+            # 插入数据库
+            stu.save()
+            return HttpResponse('注册成功')
+        return HttpResponse('注册失败')
 
 
 # 处理登录功能
