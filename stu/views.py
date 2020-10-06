@@ -34,3 +34,9 @@ def login_view(request):
     if uname == 'zhangsan' and pwd == '123':
         return HttpResponse('登陆成功！')
     return HttpResponse('登陆失败！')
+
+
+def show_view(request):
+    # 查询stu_student表中所有数据
+    stus = Student.objects.all()
+    return render(request, 'show.html', {'students': stus})  # 注意,key:value中的key必须和前段对应，value必须和上面的变量名相同

@@ -22,5 +22,6 @@ from PythonWEB import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^hello/', views.index_view),  # 正则表达式匹配路径hello，到views.py文件中的index_view函数
-    url(r'^register/', include('stu.urls'))
+    url(r'^register/', include('stu.urls')),
+    url(r'student/', include('stu.urls'))
 ]
