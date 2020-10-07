@@ -27,13 +27,19 @@ def index_view(request):
 
 # 处理登录功能
 def login_view(request):
-    # 接收表单的请求参数
-    uname = request.GET.get('uname', '')  # 这里的uname表示网页表单中name为uname的input，逗号后面的表示为空
-    pwd = request.GET.get('pwd', '')  # 这里的pwd表示网页表单中name为pwd的input，逗号后面的表示为空
-    # 判断
-    if uname == 'zhangsan' and pwd == '123':
-        return HttpResponse('登陆成功！')
-    return HttpResponse('登陆失败！')
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        # 获取请求参数
+        uname = request.POST.get('uname', '')
+        pwd = request.POST.get('pwd', '')
+        # 查询数据库
+        if uname and pwd:
+            c = Student.objects.filter(sname=uname, spwd=pwd).count()
+        # 判断是否登录成功
+        if c == 1:
+            return HttpResponse('登录成功！')
+        return HttpResponse('登录失败！')
 
 
 def show_view(request):
