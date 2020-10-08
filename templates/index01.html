@@ -85,32 +85,18 @@
 </div>
 <div id="content">
     <ul class="clearfix">
+        {% for movie in movies %}
         <li>
-            <a href="#"><img src="" /></a>
-            <h1 class="h1">H1</h1>
-            <span class="tip">TIP</span>
+            <a href="{{ movie.mlink }}"><img src="{{ movie.ming }}" /></a>
+            <h1 class="h1">{{ movie.mname }}</h1>
+            <span class="tip">{{ movie.mdesc }}</span>
         </li>
-        <li>
-            <a href="#"><img src="" /></a>
-            <h1 class="h1">H1</h1>
-            <span class="tip">TIP</span>
-        </li>
-        <li>
-            <a href="#"><img src="" /></a>
-            <h1 class="h1">H1</h1>
-            <span class="tip">TIP</span>
-        </li>
-        <li>
-            <a href="#"><img src="" /></a>
-            <h1 class="h1">H1</h1>
-            <span class="tip">TIP</span>
-        </li>
-        <li>
-            <a href="#"><img src="" /></a>
-            <h1 class="h1">H1</h1>
-            <span class="tip">TIP</span>
-        </li>
+        {% endfor %}
     </ul>
+</div>
+<div>
+    <a href="/movie/?num={{ pre_page_num }}">上一页</a>
+    <a href="/movie/?num={{ next_page_num }}">下一页</a>
 </div>
 </body>
 </html>
