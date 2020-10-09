@@ -85,7 +85,7 @@
 </div>
 <div id="content">
     <ul class="clearfix">
-        {% for movie in movies %}
+        {% for movie in perpage_data %}
         <li>
             <a href="{{ movie.mlink }}"><img src="{{ movie.ming }}" /></a>
             <h1 class="h1">{{ movie.mname }}</h1>
@@ -95,8 +95,17 @@
     </ul>
 </div>
 <div>
-    <a href="/movie/?num={{ pre_page_num }}">上一页</a>
-    <a href="/movie/?num={{ next_page_num }}">下一页</a>
+    {% if perpage_data.has_previous %}
+    <a href="/movie/index/?num={{ perpage_data.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for n in pager.page_range %}
+        {% if n < 3 %}
+        <a href="/movie/index/?num={{ n }}">{{ n }}</a>&emsp;
+        {% endif %}
+    {% endfor %}
+    {% if perpage_data.has_next %}
+    <a href="/movie/index/?num={{ perpage_data.next_page_number }}">下一页</a>
+    {% endif %}
 </div>
 </body>
 </html>
