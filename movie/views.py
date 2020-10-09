@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from .models import *
 import math
-from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # Create your views here.
 
-def page(num, size=18):
+def page(num, size=12):
     # 接收当前页码数
     num = int(num)  # 前台接收的参数num是字符串类型，必须转换为int类型
 
@@ -53,7 +53,7 @@ def index2_view(request):
     # 查询所有数据
     movies = Movie.objects.all()
     # 创建分页器对象
-    pager = Paginator(movies, 18)
+    pager = Paginator(movies, 12)
     # 获取当前页的数据
     try:
         perpage_data = pager.page(n)
@@ -63,5 +63,20 @@ def index2_view(request):
     except EmptyPage:
         # 返回最后一页的数据
         perpage_data = pager.page(pager.num_pages)
-    return render(request,'index01.html',{'pager':pager,
-                                          'perpage_data':perpage_data})
+
+    # 每页开始页码
+    begin = (n - int(math.ceil(4.0 / 2)))
+    if begin < 1:
+        begin = 1
+    # 每页结束页码
+    end = begin + 3
+    if end > pager.num_pages:
+        end = pager.num_pages
+    if end <= 4:
+        begin = 1
+    else:
+        begin = end - 3
+    pagelist = range(begin, end + 1)
+    return render(request, 'index01.html', {'pager': pager,
+                                            'perpage_data': perpage_data,
+                                            'pagelist': pagelist})
