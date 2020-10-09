@@ -99,7 +99,12 @@
     <a href="/movie/index/?num={{ perpage_data.previous_page_number }}">上一页</a>
     {% endif %}
     {% for n in pagelist %}
-    <a href="/movie/index/?num={{ n }}">{{ n }}</a>&emsp;
+        {% if currentPage == n %}
+            <a href="/movie/index/?num={{ n }}" style="font-size: 25px;color: red;">{{ n }}</a>&emsp;
+        {% else %}
+            <a href="/movie/index/?num={{ n }}">{{ n }}</a>&emsp;
+        {% endif %}
+
     {% endfor %}
     {% if perpage_data.has_next %}
     <a href="/movie/index/?num={{ perpage_data.next_page_number }}">下一页</a>

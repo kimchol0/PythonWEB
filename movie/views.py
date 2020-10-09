@@ -53,7 +53,7 @@ def index2_view(request):
     # 查询所有数据
     movies = Movie.objects.all()
     # 创建分页器对象
-    pager = Paginator(movies, 12)
+    pager = Paginator(movies, 3)
     # 获取当前页的数据
     try:
         perpage_data = pager.page(n)
@@ -65,18 +65,19 @@ def index2_view(request):
         perpage_data = pager.page(pager.num_pages)
 
     # 每页开始页码
-    begin = (n - int(math.ceil(4.0 / 2)))
+    begin = (n - int(math.ceil(10.0 / 2)))
     if begin < 1:
         begin = 1
     # 每页结束页码
-    end = begin + 3
+    end = begin + 9
     if end > pager.num_pages:
         end = pager.num_pages
-    if end <= 4:
+    if end <= 5:
         begin = 1
     else:
-        begin = end - 3
+        begin = end - 9
     pagelist = range(begin, end + 1)
     return render(request, 'index01.html', {'pager': pager,
                                             'perpage_data': perpage_data,
-                                            'pagelist': pagelist})
+                                            'pagelist': pagelist,
+                                            'currentPage': n})
