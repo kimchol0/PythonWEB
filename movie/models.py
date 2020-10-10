@@ -15,6 +15,9 @@ class Movie(models.Model):
     ming = models.CharField(max_length=120)
     mlink = models.CharField(max_length=200)
 
+    def __str__(self):
+        return u'Movie:%s,%s'%(self.mid,self.mname)
+
     class Meta:
         managed = False
         db_table = 'movie'
