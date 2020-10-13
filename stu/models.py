@@ -9,3 +9,22 @@ class Student(models.Model):  # 必须继承模型类，否则就是一个普通
 
     def __str__(self):
         return u'Student:%s' % self.sname  # admin管理页面显示Student:对应的姓名，而非显示Student Object
+
+
+# 帖子模型类
+class Post(models.Model):
+    pid = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=10, unique=True)
+    context = models.TextField()
+    create = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    email = models.EmailField()
+    isdelete = models.BooleanField(default=False)
+    access_count = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return u'Post:%s,%s' % (self.title, self.access_count)
+
+    class Meta:
+        db_table = 't_post'
