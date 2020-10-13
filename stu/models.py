@@ -28,3 +28,6 @@ class Post(models.Model):
 
     class Meta:
         db_table = 't_post'
+
+# python manage.py makemigrations stu
+# python manage.py migrate
