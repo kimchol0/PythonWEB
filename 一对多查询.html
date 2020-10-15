@@ -18,6 +18,19 @@
 <xmp>>>><QuerySet [<Student: Student:zhangsan>, <Student: Student:lisi>]></xmp><br>
 >>>Student.objects.first().cno&nbsp;&nbsp;&nbsp;逆向查询<br>
 >>><Clazz: Clazz object (1)><br>
-
+    <br><br><br>
+    <p>写一个函数插入数据</p>
+def insertData(clsname,*snames):<br>
+...     try:<br>
+...         cls=Clazz.objects.get(cname=clsname)<br>
+...     except Clazz.DoesNotExist:<br>
+...         cls=Clazz.objects.create(cname=clsname)<br>
+...     for sn in snames:<br>
+...         try:<br>
+...             stu=Student.objects.get(sname=sn)<br>
+...         except:<br>
+...             Student.objects.create(sname=sn,cno=cls)<br>
+...
+insertData('B203HTML5班','zhangjie','xiena')<br>
 </body>
 </html>

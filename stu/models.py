@@ -18,3 +18,16 @@ class Student(models.Model):
 
     def __str__(self):
         return u'Student:%s' % self.sname
+
+
+# insertData('B203HTML5班','zhangjie','xiena')
+def insertData(clsname, *snames):
+    try:
+        cls = Clazz.objects.get(cname=clsname)
+    except Clazz.DoesNotExist:
+        cls = Clazz.objects.create(cname=clsname)
+        for sn in snames:
+            try:
+                stu = Student.objects.get(sname=sn)
+            except Student.DoesNotExist:
+                Student.objects.create(snamme=sn, cno=cls)
