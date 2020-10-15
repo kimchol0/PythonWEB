@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+>>>from stu.models import *<br>
+>>>student=Student.objects.create(sname='zhangsan')<br>
+>>>Scard.objects.create(st=student,major='计算机')<br>
+>>><Scard: Scard:计算机><br>
+>>>Student.objects.first().scard   &nbsp;&nbsp;&nbsp;正向查询<br>
+>>><Scard: Scard:计算机><br>
+>>>Scard.objects.first().st       &nbsp;&nbsp;&nbsp;逆向查询<br>
+>>><Student: Student:zhangsan><br>
+</body>
+</html>
