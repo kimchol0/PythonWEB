@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+>>>from stu.models import *<br>
+>>>cls=Clazz.objects.create(cname='B201Python')<br>
+>>>cls1=Clazz.objects.create(cname='B202Java')<br>
+>>>Student.objects.create(sname='zhangsan',cno=cls)<br>
+<xmp>>>><Student: Student:zhangsan></xmp><br>
+>>>Student.objects.create(sname='lisi',cno=cls)<br>
+<xmp>>>><Student: Student:lisi></xmp><br>
+>>> Student.objects.create(sname='wangwu',cno=cls1)<br>
+<xmp>>>><Student: Student:wangwu></xmp><br>
+>>>Clazz.objects.first().student_set.all()&nbsp;&nbsp;&nbsp;正向查询<br>
+<xmp>>>><QuerySet [<Student: Student:zhangsan>, <Student: Student:lisi>]></xmp><br>
+>>>Student.objects.first().cno&nbsp;&nbsp;&nbsp;逆向查询<br>
+>>><Clazz: Clazz object (1)><br>
+
+</body>
+</html>
