@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stu_student`
+-- Table structure for table `stu_clazz`
 --
 
-DROP TABLE IF EXISTS `stu_student`;
+DROP TABLE IF EXISTS `stu_clazz`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stu_student` (
-  `sno` int NOT NULL AUTO_INCREMENT,
-  `sname` varchar(30) NOT NULL,
-  `cno_id` int NOT NULL,
-  PRIMARY KEY (`sno`),
-  KEY `stu_student_cno_id_805da1de_fk_stu_clazz_cno` (`cno_id`),
-  CONSTRAINT `stu_student_cno_id_805da1de_fk_stu_clazz_cno` FOREIGN KEY (`cno_id`) REFERENCES `stu_clazz` (`cno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `stu_clazz` (
+  `cno` int NOT NULL AUTO_INCREMENT,
+  `cname` varchar(30) NOT NULL,
+  PRIMARY KEY (`cno`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stu_student`
+-- Dumping data for table `stu_clazz`
 --
 
-LOCK TABLES `stu_student` WRITE;
-/*!40000 ALTER TABLE `stu_student` DISABLE KEYS */;
-INSERT INTO `stu_student` VALUES (1,'zhangsan',1),(2,'lisi',1),(3,'wangwu',2),(4,'zhangjie',3),(5,'xiena',3);
-/*!40000 ALTER TABLE `stu_student` ENABLE KEYS */;
+LOCK TABLES `stu_clazz` WRITE;
+/*!40000 ALTER TABLE `stu_clazz` DISABLE KEYS */;
+INSERT INTO `stu_clazz` VALUES (1,'B201Python'),(2,'B202Java'),(3,'B203HTML5班'),(4,'wangwu');
+/*!40000 ALTER TABLE `stu_clazz` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -16,30 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stu_student`
+-- Table structure for table `stu_teacher_cour`
 --
 
-DROP TABLE IF EXISTS `stu_student`;
+DROP TABLE IF EXISTS `stu_teacher_cour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stu_student` (
-  `sno` int NOT NULL AUTO_INCREMENT,
-  `sname` varchar(30) NOT NULL,
-  `cno_id` int NOT NULL,
-  PRIMARY KEY (`sno`),
-  KEY `stu_student_cno_id_805da1de_fk_stu_clazz_cno` (`cno_id`),
-  CONSTRAINT `stu_student_cno_id_805da1de_fk_stu_clazz_cno` FOREIGN KEY (`cno_id`) REFERENCES `stu_clazz` (`cno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `stu_teacher_cour` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `teacher_id` int NOT NULL,
+  `course_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `stu_teacher_cour_teacher_id_course_id_ea677e27_uniq` (`teacher_id`,`course_id`),
+  KEY `stu_teacher_cour_course_id_6aed81f1_fk_stu_course_course_no` (`course_id`),
+  CONSTRAINT `stu_teacher_cour_course_id_6aed81f1_fk_stu_course_course_no` FOREIGN KEY (`course_id`) REFERENCES `stu_course` (`course_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `stu_teacher_cour_teacher_id_67c600a9_fk_stu_teacher_tno` FOREIGN KEY (`teacher_id`) REFERENCES `stu_teacher` (`tno`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stu_student`
+-- Dumping data for table `stu_teacher_cour`
 --
 
-LOCK TABLES `stu_student` WRITE;
-/*!40000 ALTER TABLE `stu_student` DISABLE KEYS */;
-INSERT INTO `stu_student` VALUES (1,'zhangsan',1),(2,'lisi',1),(3,'wangwu',2),(4,'zhangjie',3),(5,'xiena',3);
-/*!40000 ALTER TABLE `stu_student` ENABLE KEYS */;
+LOCK TABLES `stu_teacher_cour` WRITE;
+/*!40000 ALTER TABLE `stu_teacher_cour` DISABLE KEYS */;
+INSERT INTO `stu_teacher_cour` VALUES (1,1,1),(2,1,2),(3,1,3),(4,3,4),(5,3,5);
+/*!40000 ALTER TABLE `stu_teacher_cour` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

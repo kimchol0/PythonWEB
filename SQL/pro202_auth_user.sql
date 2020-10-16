@@ -16,30 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stu_student`
+-- Table structure for table `auth_user`
 --
 
-DROP TABLE IF EXISTS `stu_student`;
+DROP TABLE IF EXISTS `auth_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stu_student` (
-  `sno` int NOT NULL AUTO_INCREMENT,
-  `sname` varchar(30) NOT NULL,
-  `cno_id` int NOT NULL,
-  PRIMARY KEY (`sno`),
-  KEY `stu_student_cno_id_805da1de_fk_stu_clazz_cno` (`cno_id`),
-  CONSTRAINT `stu_student_cno_id_805da1de_fk_stu_clazz_cno` FOREIGN KEY (`cno_id`) REFERENCES `stu_clazz` (`cno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stu_student`
+-- Dumping data for table `auth_user`
 --
 
-LOCK TABLES `stu_student` WRITE;
-/*!40000 ALTER TABLE `stu_student` DISABLE KEYS */;
-INSERT INTO `stu_student` VALUES (1,'zhangsan',1),(2,'lisi',1),(3,'wangwu',2),(4,'zhangjie',3),(5,'xiena',3);
-/*!40000 ALTER TABLE `stu_student` ENABLE KEYS */;
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$216000$zGV31UDolxmy$ffAdC8SuZnsMoQWBO0xYRVVX4XxNtrr1tCRLrEhUvXg=','2020-10-13 13:30:30.969157',1,'admin','','','1@1.com',1,1,'2020-10-13 13:29:58.209614');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

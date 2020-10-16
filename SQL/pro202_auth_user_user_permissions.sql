@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stu_student`
+-- Table structure for table `auth_user_user_permissions`
 --
 
-DROP TABLE IF EXISTS `stu_student`;
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stu_student` (
-  `sno` int NOT NULL AUTO_INCREMENT,
-  `sname` varchar(30) NOT NULL,
-  `cno_id` int NOT NULL,
-  PRIMARY KEY (`sno`),
-  KEY `stu_student_cno_id_805da1de_fk_stu_clazz_cno` (`cno_id`),
-  CONSTRAINT `stu_student_cno_id_805da1de_fk_stu_clazz_cno` FOREIGN KEY (`cno_id`) REFERENCES `stu_clazz` (`cno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stu_student`
+-- Dumping data for table `auth_user_user_permissions`
 --
 
-LOCK TABLES `stu_student` WRITE;
-/*!40000 ALTER TABLE `stu_student` DISABLE KEYS */;
-INSERT INTO `stu_student` VALUES (1,'zhangsan',1),(2,'lisi',1),(3,'wangwu',2),(4,'zhangjie',3),(5,'xiena',3);
-/*!40000 ALTER TABLE `stu_student` ENABLE KEYS */;
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-16 21:40:33
+-- Dump completed on 2020-10-16 21:40:32
