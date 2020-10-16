@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+>>>from stu.models import *<br>
+>>>cour1=Course.objects.create(course_name='Python')<br>
+>>>cour2=Course.objects.create(course_name='Java')<br>
+>>>cour3=Course.objects.create(course_name='HTML5')<br>
+>>>t=Teacher.objects.create(tname='zhangsan')<br>
+>>>t2=Teacher.objects.create(tname='lisi')<br>
+>>>t.cour.add(cour1,cour2,cour3)<br>
+>>>Course.objects.first().teacher_set.all()&nbsp;&nbsp;&nbsp;正向查询<br>
+>>><xmp><QuerySet [<Teacher: Teacher:zhangsan>]></xmp><br>
+>>>Teacher.objects.first().cour.all()&nbsp;&nbsp;&nbsp;逆向查询<br>
+>>><xmp><QuerySet [<Course: Course:Python>, <Course: Course:Java>, <Course: Course:HTML5>]></xmp><br>
+</body>
+</html>
